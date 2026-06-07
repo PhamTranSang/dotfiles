@@ -1,0 +1,9 @@
+#!/bin/sh
+set -eu
+
+dir="$HOME/Pictures/Screenshots"
+mkdir -p "$dir"
+
+file="$dir/screenshot-$(date +%Y-%m-%d-%H%M%S).png"
+grim "$file"
+notify-send "Screenshot saved" "$file"

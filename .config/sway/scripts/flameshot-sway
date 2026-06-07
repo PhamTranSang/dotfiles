@@ -1,0 +1,16 @@
+#!/bin/sh
+set -eu
+
+dir="$HOME/Pictures/Screenshots"
+mkdir -p "$dir"
+
+export XDG_CURRENT_DESKTOP="${XDG_CURRENT_DESKTOP:-sway}"
+export XDG_SESSION_DESKTOP="${XDG_SESSION_DESKTOP:-sway}"
+export QT_QPA_PLATFORM="${QT_QPA_PLATFORM:-wayland}"
+
+if flameshot gui -p "$dir"; then
+  exit 0
+fi
+
+notify-send "Flameshot failed" "Falling back to grim + slurp"
+exec "$HOME/.config/sway/scripts/sway-screenshot-region"

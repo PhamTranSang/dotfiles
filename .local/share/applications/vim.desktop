@@ -1,0 +1,11 @@
+[Desktop Entry]
+Name=Vim
+GenericName=Text Editor
+Comment=Edit text files in Vim
+Exec=alacritty -e vim
+Icon=gvim
+Terminal=false
+Type=Application
+Categories=Utility;TextEditor;
+Keywords=Text;editor;vim;
+StartupNotify=false

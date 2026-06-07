@@ -1,0 +1,6 @@
+gotop
+postman-bin
+visual-studio-code-bin
+wlogout
+yay
+yay-debug

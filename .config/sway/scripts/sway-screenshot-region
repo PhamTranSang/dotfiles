@@ -1,0 +1,12 @@
+#!/bin/sh
+set -eu
+
+dir="$HOME/Pictures/Screenshots"
+mkdir -p "$dir"
+
+file="$dir/screenshot-$(date +%Y-%m-%d-%H%M%S).png"
+geometry="$(slurp)"
+
+[ -n "$geometry" ] || exit 0
+grim -g "$geometry" "$file"
+notify-send "Screenshot saved" "$file"

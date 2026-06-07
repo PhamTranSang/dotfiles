@@ -1,0 +1,116 @@
+[general]
+live_config_reload = true
+
+[env]
+TERM = "xterm-256color"
+
+[window]
+opacity = 0.96
+blur = true
+decorations = "Full"
+dynamic_padding = true
+startup_mode = "Windowed"
+title = "Alacritty"
+
+[window.padding]
+x = 10
+y = 8
+
+[scrolling]
+history = 20000
+multiplier = 3
+
+[font]
+size = 11.5
+builtin_box_drawing = true
+
+[font.normal]
+family = "JetBrainsMono"
+style = "Regular"
+
+[font.bold]
+family = "JetBrainsMono"
+style = "Bold"
+
+[font.italic]
+family = "JetBrainsMono"
+style = "Italic"
+
+[font.bold_italic]
+family = "JetBrainsMono"
+style = "Bold Italic"
+
+[selection]
+save_to_clipboard = true
+
+[cursor]
+blink_interval = 500
+blink_timeout = 0
+unfocused_hollow = true
+thickness = 0.15
+
+[cursor.style]
+shape = "Block"
+blinking = "On"
+
+[mouse]
+hide_when_typing = true
+
+[[mouse.bindings]]
+mouse = "Middle"
+action = "PasteSelection"
+
+[[hints.enabled]]
+regex = "(ipfs:|ipns:|magnet:|mailto:|https:|http:|file:|git:|ssh:|ftp:)[^\\u0000-\\u001F\\u007F-\\u009F<>\"\\s{-}\\\\^⟨⟩`]+"
+command = "xdg-open"
+post_processing = true
+mouse.enabled = true
+mouse.mods = "Control"
+binding = { key = "U", mods = "Control|Shift" }
+
+[colors.primary]
+background = "#300a24"
+foreground = "#eeeeec"
+dim_foreground = "#babdb6"
+bright_foreground = "#ffffff"
+
+[colors.cursor]
+text = "#300a24"
+cursor = "#b4d5ff"
+
+[colors.selection]
+text = "#300a24"
+background = "#f2f2f2"
+
+[colors.normal]
+black = "#2e3436"
+red = "#cc0000"
+green = "#4e9a06"
+yellow = "#c4a000"
+blue = "#3465a4"
+magenta = "#75507b"
+cyan = "#06989a"
+white = "#d3d7cf"
+
+[colors.bright]
+black = "#555753"
+red = "#ef2929"
+green = "#8ae234"
+yellow = "#fce94f"
+blue = "#729fcf"
+magenta = "#ad7fa8"
+cyan = "#34e2e2"
+white = "#eeeeec"
+
+[keyboard]
+bindings = [
+  { key = "C", mods = "Control|Shift", action = "Copy" },
+  { key = "V", mods = "Control|Shift", action = "Paste" },
+  { key = "Plus", mods = "Control", action = "IncreaseFontSize" },
+  { key = "Minus", mods = "Control", action = "DecreaseFontSize" },
+  { key = "Key0", mods = "Control", action = "ResetFontSize" },
+  { key = "PageUp", mods = "Shift", action = "ScrollPageUp" },
+  { key = "PageDown", mods = "Shift", action = "ScrollPageDown" },
+  { key = "Home", mods = "Shift", action = "ScrollToTop" },
+  { key = "End", mods = "Shift", action = "ScrollToBottom" }
+]

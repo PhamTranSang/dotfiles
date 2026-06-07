@@ -1,0 +1,69 @@
+#!/usr/bin/env python3
+import json
+import os
+import subprocess
+import sys
+
+HOME = os.path.expanduser("~")
+WALLPAPERS = {
+    "16:9": os.path.join(HOME, ".config/sway/backgrounds/sway-arch-night.png"),
+    "21:9": os.path.join(HOME, ".config/sway/backgrounds/sway-arch-night-21x9.png"),
+}
+
+
+def output_size(output):
+    mode = output.get("current_mode") or {}
+    width = mode.get("width")
+    height = mode.get("height")
+
+    if not width or not height:
+        rect = output.get("rect") or {}
+        width = rect.get("width")
+        height = rect.get("height")
+
+    return width, height
+
+
+def wallpaper_for(width, height):
+    if not width or not height:
+        return WALLPAPERS["16:9"]
+
+    ratio = width / height
+    if ratio >= 2.1:
+        return WALLPAPERS["21:9"]
+    return WALLPAPERS["16:9"]
+
+
+def swaymsg(*args):
+    return subprocess.run(["swaymsg", *args], text=True, capture_output=True)
+
+
+def main():
+    result = swaymsg("-t", "get_outputs")
+    if result.returncode != 0:
+        sys.stderr.write(result.stderr or result.stdout)
+        return result.returncode
+
+    outputs = json.loads(result.stdout)
+    active_outputs = [output for output in outputs if output.get("active")]
+
+    for output in active_outputs:
+        name = output.get("name")
+        width, height = output_size(output)
+        wallpaper = wallpaper_for(width, height)
+
+        if not name:
+            continue
+        if not os.path.exists(wallpaper):
+            sys.stderr.write(f"Wallpaper not found: {wallpaper}\n")
+            continue
+
+        apply_result = swaymsg("output", name, "bg", wallpaper, "fill")
+        if apply_result.returncode != 0:
+            sys.stderr.write(apply_result.stderr or apply_result.stdout)
+
+    return 0
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())
