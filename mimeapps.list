@@ -1,0 +1,6 @@
+[Default Applications]
+text/plain=code.desktop
+x-scheme-handler/postman=Postman.desktop
+
+[Added Associations]
+text/plain=code.desktop;

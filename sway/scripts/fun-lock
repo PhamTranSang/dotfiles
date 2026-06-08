@@ -1,0 +1,20 @@
+#!/usr/bin/env sh
+set -eu
+
+config="${HOME}/.config/sway/lock-screen/config.ini"
+runtime_config="/tmp/fun-lock-gtklock-${UID:-$(id -u)}.ini"
+module="${HOME}/.config/sway/lock-screen/build/libpacman-lock-module.so"
+
+if [ ! -f "$config" ]; then
+  printf 'fun-lock: missing gtklock config: %s\n' "$config" >&2
+  exit 1
+fi
+
+if [ ! -f "$module" ]; then
+  printf 'fun-lock: missing gtklock animation module: %s\n' "$module" >&2
+  printf 'fun-lock: rebuild with: cd ~/.config/sway/lock-screen && ninja -C build\n' >&2
+  exit 1
+fi
+
+sed "s|\${HOME}|${HOME}|g" "$config" > "$runtime_config"
+exec gtklock -c "$runtime_config" >>/tmp/fun-lock.log 2>&1

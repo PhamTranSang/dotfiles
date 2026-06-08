@@ -1,0 +1,98 @@
+* {
+  font-family: "Inter", "Cantarell", "Noto Sans", sans-serif;
+  text-shadow: none;
+}
+
+window {
+  background: #070b16;
+  color: #f4f7ff;
+}
+
+#pacman-game {
+  opacity: 1;
+}
+
+#window-box {
+  color: #f4f7ff;
+}
+
+#clock-label {
+  font-size: 48px;
+  font-weight: 700;
+  color: rgba(244, 247, 255, 0.92);
+}
+
+#date-label {
+  font-size: 15px;
+  color: rgba(170, 185, 210, 0.86);
+}
+
+#login-card {
+  min-width: 520px;
+  padding: 26px 28px;
+  border: 2px solid #2a74f5;
+  background: rgba(7, 11, 22, 0.88);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.38);
+}
+
+#avatar-label {
+  min-width: 54px;
+  min-height: 54px;
+  border-radius: 999px;
+  background: #ffd43b;
+  color: #0b101f;
+  font-size: 24px;
+  font-weight: 800;
+}
+
+#user-label {
+  font-size: 24px;
+  font-weight: 800;
+  color: #f4f7ff;
+}
+
+#hint-label,
+#input-label {
+  font-size: 13px;
+  color: #9aa8bd;
+}
+
+#input-field {
+  min-height: 42px;
+  padding: 0 12px;
+  border: 1px solid rgba(126, 146, 177, 0.42);
+  border-radius: 4px;
+  background: rgba(12, 18, 34, 0.94);
+  color: #f4f7ff;
+  caret-color: #ffd43b;
+  box-shadow: none;
+}
+
+#input-field:focus {
+  border-color: #ffd43b;
+  box-shadow: 0 0 0 2px rgba(255, 212, 59, 0.18);
+}
+
+#unlock-button {
+  min-width: 116px;
+  min-height: 42px;
+  border: 0;
+  border-radius: 4px;
+  background: #2a74f5;
+  color: #ffffff;
+  font-weight: 800;
+  box-shadow: none;
+}
+
+#unlock-button:hover,
+#unlock-button:focus {
+  background: #3b82ff;
+}
+
+#warning-label {
+  color: #ffd43b;
+}
+
+#error-label {
+  color: #ff6b7a;
+}
