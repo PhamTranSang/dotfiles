@@ -92,10 +92,25 @@ button:hover {
 #mode,
 #idle_inhibitor,
 #scratchpad,
-#custom-power {
+#custom-power,
+#custom-cpubar {
   margin: 5px 3px;
   padding: 0 9px;
   border-radius: 4px;
+}
+
+/* --- do thi CPU ---
+   Icon dung font mac dinh (khop cac module khac); do thi boc
+   <span font_family='JetBrains Mono'> de block chars deu nhau. */
+#custom-cpubar {
+  background: #244d3a;
+}
+#custom-cpubar.warning {
+  background: #6a5624;
+}
+#custom-cpubar.critical {
+  background: #7a2d2d;
+  color: #ffd7df;
 }
 
 #clock {

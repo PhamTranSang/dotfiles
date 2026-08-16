@@ -3,8 +3,7 @@
   <object class="GtkBox" id="window-box">
     <property name="name">window-box</property>
     <property name="halign">center</property>
-    <property name="valign">end</property>
-    <property name="margin-bottom">70</property>
+    <property name="valign">center</property>
     <property name="orientation">vertical</property>
     <property name="spacing">18</property>
     <child>

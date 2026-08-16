@@ -1,0 +1,5 @@
+# Build artifacts (sway lock-screen meson/ninja)
+sway/lock-screen/build/
+
+# Editor / tool backup files
+*.bak
