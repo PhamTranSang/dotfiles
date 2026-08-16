@@ -1,0 +1,7 @@
+base
+linux-lts
+linux-firmware
+intel-ucode
+grub
+efibootmgr
+os-prober
