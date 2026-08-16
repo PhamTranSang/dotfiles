@@ -21,23 +21,25 @@ history = 20000
 multiplier = 3
 
 [font]
+# Nerd Font variant so terminal icons (starship/p10k, eza, lsd, git status)
+# render. Requires the package ttf-jetbrains-mono-nerd.
 size = 11.5
 builtin_box_drawing = true
 
 [font.normal]
-family = "JetBrainsMono"
+family = "JetBrainsMono Nerd Font"
 style = "Regular"
 
 [font.bold]
-family = "JetBrainsMono"
+family = "JetBrainsMono Nerd Font"
 style = "Bold"
 
 [font.italic]
-family = "JetBrainsMono"
+family = "JetBrainsMono Nerd Font"
 style = "Italic"
 
 [font.bold_italic]
-family = "JetBrainsMono"
+family = "JetBrainsMono Nerd Font"
 style = "Bold Italic"
 
 [selection]
@@ -68,49 +70,71 @@ mouse.enabled = true
 mouse.mods = "Control"
 binding = { key = "U", mods = "Control|Shift" }
 
+# ── Tokyo Night ───────────────────────────────────────────────────────────────
 [colors.primary]
-background = "#300a24"
-foreground = "#eeeeec"
-dim_foreground = "#babdb6"
-bright_foreground = "#ffffff"
+background = "#1a1b26"
+foreground = "#c0caf5"
 
 [colors.cursor]
-text = "#300a24"
-cursor = "#b4d5ff"
+text = "#1a1b26"
+cursor = "#c0caf5"
+
+[colors.vi_mode_cursor]
+text = "#1a1b26"
+cursor = "#c0caf5"
 
 [colors.selection]
-text = "#300a24"
-background = "#f2f2f2"
+text = "#c0caf5"
+background = "#283457"
 
 [colors.normal]
-black = "#2e3436"
-red = "#cc0000"
-green = "#4e9a06"
-yellow = "#c4a000"
-blue = "#3465a4"
-magenta = "#75507b"
-cyan = "#06989a"
-white = "#d3d7cf"
+black = "#15161e"
+red = "#f7768e"
+green = "#9ece6a"
+yellow = "#e0af68"
+blue = "#7aa2f7"
+magenta = "#bb9af7"
+cyan = "#7dcfff"
+white = "#a9b1d6"
 
 [colors.bright]
-black = "#555753"
-red = "#ef2929"
-green = "#8ae234"
-yellow = "#fce94f"
-blue = "#729fcf"
-magenta = "#ad7fa8"
-cyan = "#34e2e2"
-white = "#eeeeec"
+black = "#414868"
+red = "#f7768e"
+green = "#9ece6a"
+yellow = "#e0af68"
+blue = "#7aa2f7"
+magenta = "#bb9af7"
+cyan = "#7dcfff"
+white = "#c0caf5"
+
+[[colors.indexed_colors]]
+index = 16
+color = "#ff9e64"
+
+[[colors.indexed_colors]]
+index = 17
+color = "#db4b4b"
+
+[colors.search.matches]
+foreground = "#1a1b26"
+background = "#a9b1d6"
+
+[colors.search.focused_match]
+foreground = "#1a1b26"
+background = "#ff9e64"
+
+[colors.footer_bar]
+foreground = "#c0caf5"
+background = "#1a1b26"
 
 [keyboard]
 bindings = [
   { key = "C", mods = "Control|Shift", action = "Copy" },
   { key = "V", mods = "Control|Shift", action = "Paste" },
+  { key = "N", mods = "Control|Shift", action = "CreateNewWindow" },
+  { key = "Space", mods = "Control|Shift", action = "ToggleViMode" },
+  { key = "F", mods = "Control|Shift", action = "SearchForward" },
   { key = "Plus", mods = "Control", action = "IncreaseFontSize" },
   { key = "Minus", mods = "Control", action = "DecreaseFontSize" },
-  { key = "Key0", mods = "Control", action = "ResetFontSize" },
-  { key = "PageUp", mods = "Shift", action = "ScrollPageUp" },
-  { key = "PageDown", mods = "Shift", action = "ScrollPageDown" },
-  { key = "Home", mods = "Shift", action = "ScrollToTop" },
-  { key = "End", mods = "Shift", action = "ScrollToBottom" }
+  { key = "Key0", mods = "Control", action = "ResetFontSize" }
 ]
