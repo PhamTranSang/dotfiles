@@ -28,6 +28,14 @@ install_native_packages() {
   sudo pacman -Syu --needed - < "$NATIVE_PACKAGES"
 }
 
+install_build_deps() {
+  # Build toolchain for the Sway lock-screen module compiled by
+  # install-dotfiles.sh. These are pulled in as dependencies on this machine,
+  # so they are not tracked in native.txt; install them explicitly here.
+  log "Installing build dependencies for the Sway lock-screen module"
+  sudo pacman -S --needed meson ninja gcc
+}
+
 install_yay_if_missing() {
   if command -v yay >/dev/null 2>&1; then
     return
@@ -66,6 +74,7 @@ main() {
   require_arch
   require_files
   install_native_packages
+  install_build_deps
   install_yay_if_missing
   install_aur_packages
 
