@@ -1,0 +1,186 @@
+# If you come from bash you might have to change your $PATH.
+# export PATH=$HOME/bin:$HOME/.local/bin:/usr/local/bin:$PATH
+
+# ── Auto-start tmux ───────────────────────────────────────────────────────────
+# Launch tmux automatically for interactive terminals. Guards skip it when:
+#   - already inside tmux ($TMUX)          -> avoids nesting
+#   - the shell isn't interactive          -> scp/rsync/scripts stay clean
+#   - inside an editor terminal (VS Code)  -> those manage their own shell
+# `exec tmux` gives each terminal its own session. For one shared session across
+# all terminals instead, swap it for: exec tmux new-session -A -s main
+if command -v tmux >/dev/null 2>&1 \
+   && [[ $- == *i* ]] && [[ -z "$TMUX" ]] \
+   && [[ "$TERM_PROGRAM" != "vscode" && -z "$VSCODE_INJECTION" ]] \
+   && [[ -z "$INSIDE_EMACS" ]]; then
+  exec tmux
+fi
+
+# Path to your Oh My Zsh installation.
+export ZSH="$HOME/.oh-my-zsh"
+
+# Set name of the theme to load --- if set to "random", it will
+# load a random theme each time Oh My Zsh is loaded, in which case,
+# to know which specific one was loaded, run: echo $RANDOM_THEME
+# See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
+ZSH_THEME="robbyrussell"
+
+# Set list of themes to pick from when loading at random
+# Setting this variable when ZSH_THEME=random will cause zsh to load
+# a theme from this variable instead of looking in $ZSH/themes/
+# If set to an empty array, this variable will have no effect.
+# ZSH_THEME_RANDOM_CANDIDATES=( "robbyrussell" "agnoster" )
+
+# Uncomment the following line to use case-sensitive completion.
+# CASE_SENSITIVE="true"
+
+# Uncomment the following line to use hyphen-insensitive completion.
+# Case-sensitive completion must be off. _ and - will be interchangeable.
+# HYPHEN_INSENSITIVE="true"
+
+# Uncomment one of the following lines to change the auto-update behavior
+# zstyle ':omz:update' mode disabled  # disable automatic updates
+# zstyle ':omz:update' mode auto      # update automatically without asking
+# zstyle ':omz:update' mode reminder  # just remind me to update when it's time
+
+# Uncomment the following line to change how often to auto-update (in days).
+# zstyle ':omz:update' frequency 13
+
+# Uncomment the following line if pasting URLs and other text is messed up.
+# DISABLE_MAGIC_FUNCTIONS="true"
+
+# Uncomment the following line to disable colors in ls.
+# DISABLE_LS_COLORS="true"
+
+# Uncomment the following line to disable auto-setting terminal title.
+# DISABLE_AUTO_TITLE="true"
+
+# Uncomment the following line to enable command auto-correction.
+# ENABLE_CORRECTION="true"
+
+# Uncomment the following line to display red dots whilst waiting for completion.
+# You can also set it to another string to have that shown instead of the default red dots.
+# e.g. COMPLETION_WAITING_DOTS="%F{yellow}waiting...%f"
+# Caution: this setting can cause issues with multiline prompts in zsh < 5.7.1 (see #5765)
+# COMPLETION_WAITING_DOTS="true"
+
+# Uncomment the following line if you want to disable marking untracked files
+# under VCS as dirty. This makes repository status check for large repositories
+# much, much faster.
+# DISABLE_UNTRACKED_FILES_DIRTY="true"
+
+# Uncomment the following line if you want to change the command execution time
+# stamp shown in the history command output.
+# You can set one of the optional three formats:
+# "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
+# or set a custom format using the strftime function format specifications,
+# see 'man strftime' for details.
+# HIST_STAMPS="mm/dd/yyyy"
+
+# Would you like to use another custom folder than $ZSH/custom?
+# ZSH_CUSTOM=/path/to/new-custom-folder
+
+# Which plugins would you like to load?
+# Standard plugins can be found in $ZSH/plugins/
+# Custom plugins may be added to $ZSH_CUSTOM/plugins/
+# Example format: plugins=(rails git textmate ruby lighthouse)
+# Add wisely, as too many plugins slow down shell startup.
+plugins=(git)
+
+source $ZSH/oh-my-zsh.sh
+
+# zsh-autosuggestions: fish-like inline suggestions from your history.
+# Installed via pacman (see packages/native.txt). The guard keeps zsh quiet if
+# the package is missing. Must be sourced after oh-my-zsh.sh.
+if [[ -f /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh ]]; then
+  source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+fi
+
+# User configuration
+
+# export MANPATH="/usr/local/man:$MANPATH"
+
+# You may need to manually set your language environment
+# export LANG=en_US.UTF-8
+
+# Preferred editor for local and remote sessions
+if [[ -n $SSH_CONNECTION ]]; then
+   export EDITOR='vim'
+else
+   export EDITOR='nvim'
+fi
+
+# Compilation flags
+# export ARCHFLAGS="-arch $(uname -m)"
+
+# Set personal aliases, overriding those provided by Oh My Zsh libs,
+# plugins, and themes. Aliases can be placed here, though Oh My Zsh
+# users are encouraged to define aliases within a top-level file in
+# the $ZSH_CUSTOM folder, with .zsh extension. Examples:
+# - $ZSH_CUSTOM/aliases.zsh
+# - $ZSH_CUSTOM/macos.zsh
+# For a full list of active aliases, run `alias`.
+#
+# Example aliases
+# alias zshconfig="mate ~/.zshrc"
+# alias ohmyzsh="mate ~/.oh-my-zsh"
+
+# PATH JAVA
+export JAVA_HOME=$(readlink -f /usr/bin/java | sed "s:/bin/java::")
+export PATH="$JAVA_HOME/bin:$PATH"
+
+# NVM PATH
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+export PATH="/home/stran/.local/bin:$PATH"
+
+# ── GUI-style text selection on the command line ──────────────────────────────
+# Hold Shift + arrows to highlight text, then Backspace/Delete removes the whole
+# highlighted chunk at once (instead of one character at a time). Plain arrows
+# clear the highlight. (Quick alternatives that always work: Ctrl-W delete word,
+# Ctrl-U delete to line start, Ctrl-K delete to line end.)
+
+# Extend the selection (starting it if needed), then run the movement widget.
+_sel_extend() { (( REGION_ACTIVE )) || zle set-mark-command; zle "$1" }
+# Clear any selection, then run the movement widget.
+_sel_clear()  { (( REGION_ACTIVE )) && REGION_ACTIVE=0; zle "$1" }
+
+sel-left()   { _sel_extend backward-char };     zle -N sel-left
+sel-right()  { _sel_extend forward-char };      zle -N sel-right
+sel-wleft()  { _sel_extend backward-word };     zle -N sel-wleft
+sel-wright() { _sel_extend forward-word };      zle -N sel-wright
+sel-home()   { _sel_extend beginning-of-line }; zle -N sel-home
+sel-end()    { _sel_extend end-of-line };       zle -N sel-end
+mov-left()   { _sel_clear backward-char };       zle -N mov-left
+mov-home()   { _sel_clear beginning-of-line };   zle -N mov-home
+
+# Delete the whole selection if active, else delete a single char as usual.
+del-back-sel() { (( REGION_ACTIVE )) && { zle kill-region; return }; zle backward-delete-char }
+del-fwd-sel()  { (( REGION_ACTIVE )) && { zle kill-region; return }; zle delete-char }
+zle -N del-back-sel; zle -N del-fwd-sel
+
+# After a paste, keep the pasted text selected (a real region) so Backspace or
+# Delete removes the whole chunk at once when the paste turns out wrong.
+paste-and-select() {
+  local __start=$CURSOR
+  zle .bracketed-paste
+  MARK=$__start
+  REGION_ACTIVE=1
+}
+zle -N bracketed-paste paste-and-select
+
+# Shift + movement = extend the selection (these sequences are otherwise unused).
+bindkey '^[[1;2D' sel-left    # Shift+Left
+bindkey '^[[1;2C' sel-right   # Shift+Right
+bindkey '^[[1;6D' sel-wleft   # Ctrl+Shift+Left  (word)
+bindkey '^[[1;6C' sel-wright  # Ctrl+Shift+Right (word)
+bindkey '^[[1;2H' sel-home    # Shift+Home
+bindkey '^[[1;2F' sel-end     # Shift+End
+# Left/Home clear the selection (Right/End are left alone so zsh-autosuggestions
+# keeps accepting suggestions with the right arrow / End).
+bindkey '^[[D' mov-left  ; bindkey '^[OD' mov-left
+bindkey '^[[H' mov-home  ; bindkey '^[OH' mov-home
+# Backspace / Delete remove the selection when there is one.
+bindkey '^?' del-back-sel ; bindkey '^H' del-back-sel   # Backspace
+bindkey '^[[3~' del-fwd-sel                              # Delete
