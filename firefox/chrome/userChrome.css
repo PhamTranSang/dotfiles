@@ -1,0 +1,32 @@
+/* ============================================================
+   Chỉ đưa thanh TAB xuống ĐÁY cửa sổ Firefox (Firefox 153).
+   URL / address bar giữ nguyên ở TRÊN.
+   Bỏ hiệu ứng: xoá file này (hoặc comment hết) rồi restart.
+   ============================================================ */
+
+:root {
+  --uc-tabbar-height: 40px;                 /* chỉnh cao/thấp thanh tab ở đây */
+}
+
+/* Thanh tab ghim cứng ở đáy cửa sổ */
+#TabsToolbar {
+  position: fixed !important;
+  bottom: 0 !important;
+  left: 0 !important;
+  width: 100vw !important;
+  height: var(--uc-tabbar-height) !important;
+  z-index: 3 !important;
+  background-color: #1a1b26 !important;     /* khớp Tokyo Night */
+}
+
+/* Chừa chỗ ở đáy để trang web không bị thanh tab che */
+#browser,
+#customization-container {
+  margin-bottom: var(--uc-tabbar-height) !important;
+}
+
+/* Thu gọn khoảng trống nơi thanh tab từng nằm ở trên */
+#titlebar {
+  height: 0 !important;
+  min-height: 0 !important;
+}

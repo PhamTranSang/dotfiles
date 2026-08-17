@@ -89,6 +89,21 @@ for entry in "$SCRIPT_DIR/applications"/*; do
   link_path "$entry" "$HOME/.local/share/applications/$(basename "$entry")"
 done
 
+# Firefox lives in a profile dir with a random prefix (e.g.
+# ~/.mozilla/firefox/ytc69a6n.default-release), so we can't symlink it under a
+# fixed path — discover the profile(s) and link the customization into each.
+# userChrome.css needs toolkit.legacyUserProfileCustomizations.stylesheets=true,
+# which user.js sets on startup.
+if [[ -d "$HOME/.mozilla/firefox" ]]; then
+  shopt -s nullglob
+  for profile in "$HOME/.mozilla/firefox/"*.default-release "$HOME/.mozilla/firefox/"*.default; do
+    [[ -d "$profile" ]] || continue
+    link_path "$SCRIPT_DIR/firefox/chrome/userChrome.css" "$profile/chrome/userChrome.css"
+    link_path "$SCRIPT_DIR/firefox/user.js" "$profile/user.js"
+  done
+  shopt -u nullglob
+fi
+
 # Home-level dotfiles.
 link_path "$SCRIPT_DIR/zsh/zshrc" "$HOME/.zshrc"
 

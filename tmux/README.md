@@ -91,8 +91,8 @@ Windows are numbered from **1** and renumber automatically when one closes.
 | `Ctrl-a` `-` | Split **horizontally** (stacked) |
 | `Ctrl-a` `h` `j` `k` `l` | Move to pane left / down / up / right (vim-style) |
 | `Ctrl-a` `H` `J` `K` `L` | Resize pane (hold `Ctrl-a`, tap repeatedly) |
-| `Ctrl-a` `z` | Zoom pane to fullscreen (toggle) |
-| `Ctrl-a` `space` | Cycle through preset layouts |
+| `Ctrl-a` `z` | Zoom pane to fullscreen (toggle) — *needs 2+ panes to see an effect* |
+| `Ctrl-a` `space` | Cycle through preset layouts — *needs 2+ panes* |
 | `Ctrl-a` `x` | Close the current pane (no confirmation) |
 
 New splits open in the **current pane's directory**.
