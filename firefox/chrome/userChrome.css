@@ -30,3 +30,19 @@
   height: 0 !important;
   min-height: 0 !important;
 }
+
+/* Khi vào toàn màn hình — F11 (inFullscreen) hoặc video fullscreen như YouTube
+   (inDOMFullscreen) — ẩn thanh tab và bỏ chừa chỗ ở đáy để hình full thật sự.
+   Cần thiết vì position:fixed đưa thanh tab ra khỏi luồng nên nó không bị cơ
+   chế ẩn chrome mặc định của Firefox thu gọn. */
+:root[inFullscreen] #TabsToolbar,
+:root[inDOMFullscreen] #TabsToolbar {
+  display: none !important;
+}
+
+:root[inFullscreen] #browser,
+:root[inFullscreen] #customization-container,
+:root[inDOMFullscreen] #browser,
+:root[inDOMFullscreen] #customization-container {
+  margin-bottom: 0 !important;
+}
